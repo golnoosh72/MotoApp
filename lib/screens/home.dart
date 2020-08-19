@@ -10,6 +10,7 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
   LatLng myLocation;
   List<Marker> _markers = [
     Marker(
@@ -115,7 +116,8 @@ class _HomepageState extends State<Homepage> {
                     layers: [
                       TileLayerOptions(
                         urlTemplate:
-                            "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+//                            "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
                         subdomains: ['a', 'b', 'c'],
                       ),
                       MarkerLayerOptions(markers: _markers)

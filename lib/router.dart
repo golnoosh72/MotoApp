@@ -20,6 +20,7 @@ import 'package:uberr/screens/update_favorite.dart';
 import 'package:uberr/screens/update_information.dart';
 import 'package:uberr/screens/walkthrough.dart';
 
+
 // Routes
 // const String HomePageRoute = "/";
 const String WalkthroughRoute = "/";
@@ -41,6 +42,8 @@ const String UpdateFavoritesRoute = "update-favorite";
 const String PromotionRoute = "promotion";
 const String SuggestedRidesRoute = "suggested-route";
 const String MyRidesRoute = "my-rides";
+
+
 
 // Router
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -91,7 +94,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           builder: (BuildContext context) => SuggestedRides());
     case MyRidesRoute:
       return MaterialPageRoute(builder: (BuildContext context) => MyRides());
-    default:
+
+
+      default:
       return MaterialPageRoute(
           builder: (BuildContext context) => WalkThrough());
   }
