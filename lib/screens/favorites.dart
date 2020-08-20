@@ -80,10 +80,14 @@ class Favorites extends StatelessWidget {
                 horizontal: 0.0,
               ),
               leading: Icon(Icons.home),
+
               title: Text(
                 "Home",
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
+              onTap: () {
+                Navigator.of(context).pushNamed(SelectCountryRoute);
+              },
               trailing: Icon(Icons.chevron_right),
             ),
             Divider(),
@@ -96,12 +100,16 @@ class Favorites extends StatelessWidget {
                 "Work",
                 style: TextStyle(fontWeight: FontWeight.w500),
               ),
+              onTap: () {
+                Navigator.of(context).pushNamed(SelectCountryRoute);
+              },
               trailing: Icon(Icons.chevron_right),
             ),
             Divider(),
             SizedBox(
               height: 20.0,
             ),
+
             Text(
               "OTHER PLACES",
               style: TextStyle(
@@ -113,6 +121,7 @@ class Favorites extends StatelessWidget {
             SizedBox(
               height: 10.0,
             ),
+
             Column(
               children: _places
                   .map(
