@@ -3,6 +3,12 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:uberr/widgets/app_drawer.dart';
 import 'package:latlong/latlong.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:geocoder/geocoder.dart';
+
+const kGoogleApiKey = "AIzaSyBGMB0DpjqiefAJZX19XXD5rbfK51oSrDY";
+GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
 
 class Homepage extends StatefulWidget {
   @override
@@ -10,37 +16,12 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-
   LatLng myLocation;
   List<Marker> _markers = [
     Marker(
       width: 60.0,
       height: 60.0,
       point: LatLng(51.32, -0.083),
-      builder: (ctx) => Container(
-        child: Image.asset(
-          "assets/images/bike.png",
-          width: 60.0,
-          height: 60.0,
-        ),
-      ),
-    ),
-    Marker(
-      width: 60.0,
-      height: 60.0,
-      point: LatLng(51.3, -0.08),
-      builder: (ctx) => Container(
-        child: Image.asset(
-          "assets/images/bike.png",
-          width: 60.0,
-          height: 60.0,
-        ),
-      ),
-    ),
-    Marker(
-      width: 60.0,
-      height: 60.0,
-      point: LatLng(51.29, -0.077),
       builder: (ctx) => Container(
         child: Image.asset(
           "assets/images/bike.png",
@@ -87,6 +68,23 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    Future<Null> displayPrediction(Prediction p) async {
+      if (p != null) {
+        PlacesDetailsResponse detail =
+            await _places.getDetailsByPlaceId(p.placeId);
+
+        var placeId = p.placeId;
+        double lat = detail.result.geometry.location.lat;
+        double lng = detail.result.geometry.location.lng;
+
+        var address =
+            await Geocoder.local.findAddressesFromQuery(p.description);
+
+        print(lat);
+        print(lng);
+      }
+    }
+
     final ThemeData _theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
@@ -116,7 +114,7 @@ class _HomepageState extends State<Homepage> {
                     layers: [
                       TileLayerOptions(
                         urlTemplate:
-                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                            "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 //                            "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
                         subdomains: ['a', 'b', 'c'],
                       ),
@@ -168,51 +166,23 @@ class _HomepageState extends State<Homepage> {
                     SizedBox(
                       height: 10.0,
                     ),
-                    Text(
-                      "Book on demand or pre-scheduled rides",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     SizedBox(
                       height: 15.0,
                     ),
-                    InkWell(
-                      onTap: () {},
-                      child: Hero(
-                        tag: "search",
-                        child: Container(
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey[300],
-                            ),
-                            borderRadius: BorderRadius.circular(6.0),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 15.0,
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                child: Text(
-                                  "Enter Destination",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 17.0,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ),
-                              Icon(
-                                Icons.search,
-                                color: _theme.primaryColor,
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    )
+                    RaisedButton(
+                      onPressed: () async {
+                        Prediction p = await PlacesAutocomplete.show(
+                            context: context,
+                            apiKey: kGoogleApiKey,
+                            mode: Mode.overlay, // Mode.fullscreen overlay
+                            language: "en",
+                            components: [
+                              new Component(Component.country, "ca")
+                            ]);
+                        displayPrediction(p);
+                      },
+                      child: Text('Enter Destination'),
+                    ),
                   ],
                 ),
               ),
