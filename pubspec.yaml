@@ -29,6 +29,9 @@ dependencies:
   bubble: ^1.1.9+1
   flutter_map: ^0.8.2
   geolocator: ^5.2.1
+  flutter_google_places: ^0.2.6
+  google_maps_webservice: ^0.0.18
+  geocoder: ^0.2.1
 
 dev_dependencies:
   flutter_test:
