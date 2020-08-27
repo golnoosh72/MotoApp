@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:MotoApp/router.dart';
@@ -41,7 +42,7 @@ class _RegisterState extends State<Register> {
 
   void registerUser() async {
 print('FirstName='+firstName);
-    String url='https://mehranishanian.com/userregister.php?firstName='+firstName+'&lastName='+lastName+'&phone='+phone+'&email='+email+'&userName='+userName+'&userPass='+userPass;
+    String url='https://mehranishanian.com/userregister.php?firstName='+firstName+'&lastName='+lastName+'&phone='+phone+'&email='+email+'&userName='+email+'&userPass='+userPass;
     print(url);
     final response =
     await http.get(url);
@@ -195,8 +196,13 @@ print('FirstName='+firstName);
         SizedBox(
           height: 20.0,
         ),
+
         TextField(
 
+          keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            WhitelistingTextInputFormatter.digitsOnly
+          ],
           onChanged: (value) {
             phone = value.trim();
           },
@@ -219,17 +225,7 @@ print('FirstName='+firstName);
         SizedBox(
           height: 20.0,
         ),
-        TextField(
 
-          onChanged: (value) {
-            userName = value.trim();
-          },
-          decoration: kTextFieldDecoration.copyWith(
-              hintText: 'User Name'),
-        ),
-        SizedBox(
-          height: 20.0,
-        ),
         TextField(
 
           onChanged: (value) {
