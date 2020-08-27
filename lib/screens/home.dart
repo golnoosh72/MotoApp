@@ -7,7 +7,9 @@ import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_maps_webservice/places.dart';
 import 'package:geocoder/geocoder.dart';
 
-const kGoogleApiKey = "AIzaSyBGMB0DpjqiefAJZX19XXD5rbfK51oSrDY";
+//AIzaSyBGMB0DpjqiefAJZX19XXD5rbfK51oSrDY
+const kGoogleApiKey = "AIzaSyAE18a_cInt71TXUYq2YgXR0SvAyvBSOcI";
+
 GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: kGoogleApiKey);
 
 class Homepage extends StatefulWidget {

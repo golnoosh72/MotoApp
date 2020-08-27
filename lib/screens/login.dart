@@ -1,10 +1,125 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uberr/router.dart';
 import 'package:uberr/styles/colors.dart';
 import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class Login extends StatelessWidget {
+const kTextFieldDecoration = InputDecoration(
+  hintText: 'Enter the text.',
+  hintStyle: TextStyle(color: Colors.black45),
+  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+  border: OutlineInputBorder(
+//    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+  ),
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.black45, width: 1.0),
+//    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.black45, width: 2.0),
+//    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+  ),
+);
+
+
+/*
+Future<User> updateUser(String title) async {
+  final http.Response response = await http.put(
+    'https://jsonplaceholder.typicode.com/Users/1',
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'title': title,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return User.fromJson(json.decode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to update User.');
+  }
+}
+*/
+class User {
+  final String userId;
+  final String fullName;
+
+  User({this.userId, this.fullName});
+
+  User.fromJson(Map<String, dynamic> json)
+    :
+      userId= json['userId'],
+      fullName= json['fullName'];
+
+  Map<String, dynamic> toJson()=>{
+    'userId': userId,
+    'fullName': fullName,
+  };
+
+}
+
+
+
+class MainMaterial extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Login(),
+    );
+  }
+}
+
+
+class Login extends StatefulWidget {
+
+  @override
+  _LoginState createState() => _LoginState();
+
+}
+
+
+class _LoginState extends State<Login> {
+  User user;
+  String username;
+  String userpass;
+
+
+
+  void fetchUser() async {
+    String url='https://mehranishanian.com/userlogin.php?u='+username+'&p='+userpass;
+    print(url);
+    final response =
+    await http.get(url);
+//print(response.body);
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
+//    print(json.decode(response.body));
+if(response!=null) {
+  user = User.fromJson(json.decode(response.body));
+  print(user.fullName);
+}else{
+  user=null;
+}
+
+
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load User');
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final ThemeData _theme = Theme.of(context);
@@ -154,15 +269,34 @@ class Login extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        CustomTextFormField(
-          hintText: "Email",
-        ),
+        TextField(
+          textAlign: TextAlign.center,
+          keyboardType: TextInputType.emailAddress,
+          style: TextStyle(color: Colors.black),
+          onChanged: (value) {
+            username = value.trim();
+          },
+      decoration: kTextFieldDecoration.copyWith(
+          hintText: 'Enter your username'),
+    ),
+
+
+
         SizedBox(
-          height: 20.0,
+          height: 8.0,
         ),
-        CustomTextFormField(
-          hintText: "Password",
-        ),
+        TextField(
+          textAlign: TextAlign.center,
+          obscureText: true,
+          style: TextStyle(color: Colors.black),
+          onChanged: (value) {
+            userpass = value.trim();
+          },
+    decoration: kTextFieldDecoration.copyWith(
+    hintText: 'Enter your password'),
+    ),
+
+
         SizedBox(
           height: 20.0,
         ),
@@ -182,7 +316,40 @@ class Login extends StatelessWidget {
           child: FlatButton(
             color: _theme.primaryColor,
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed(HomepageRoute);
+
+              fetchUser();
+             // print("response=");
+
+              if (user != null) {
+//                print(user.fullName);
+                String userId = user.userId;
+
+//                SharedPreferences prefs =
+//                     SharedPreferences.getInstance();
+//                prefs.setString('userId', userId);
+
+                //print(user.fullName);
+                Navigator.of(context).pushReplacementNamed(HomepageRoute);
+              }else{
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text("Authentication Error"),
+                        content: Text(
+                            "Username or Password is wrong. Please try again."),
+                        actions: [
+                          FlatButton(
+                            child: Text("Close"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      );
+                    });
+
+              }
             },
             child: Text(
               "LOG IN",

@@ -6,12 +6,12 @@ import 'package:uberr/widgets/location_card.dart';
 class Favorites extends StatelessWidget {
   final List<Place> _places = [
     Place(
-        name: "BMW of Bellevue",
-        address: "13424 NE, 20th St Bellevue, WA 98005"),
-    Place(name: "McDonald's", address: "13424 NE, 20th St Bellevue, WA 98005"),
+        name: "Saint Patrick's Basilica",
+        address: "460 Boulevard René-Lévesque O, Montréal, QC H2Z 1A7"),
+    Place(name: "Vargas Restaurant", address: "690 Boulevard René-Lévesque O, Montréal, QC H3B 1X8"),
     Place(
-        name: "Highland Track Field",
-        address: "13424 NE, 20th St Bellevue, WA 98005"),
+        name: "Terry Mountain",
+        address: "H8C9+HF Peasleeville, New York, United States"),
   ];
   @override
   Widget build(BuildContext context) {

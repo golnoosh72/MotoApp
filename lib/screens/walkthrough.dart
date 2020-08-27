@@ -27,7 +27,7 @@ class WalkThrough extends StatelessWidget {
                       title: "Welcome to MotoApp!",
                       subtitle:
                           "You will enjoy and love it.",
-                      image: Image.asset("assets/images/b1.png"),
+                      image: Image.asset("assets/images/397.png"),
                     ),
                     WalkThroughTemplate(
                       title: "Get bonuses on each ride",

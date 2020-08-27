@@ -14,9 +14,7 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="uberr"
         android:icon="@mipmap/ic_launcher">
-        <meta-data android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBPMFw71gjvJen_o6uQU1SY8K_KJOhkeRU" />
-        <activity
+                <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -33,6 +31,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+            <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCQP4Y3y50ukWsTsOVzO4U65k8Q5Xovl6I"/>
         <!-- <meta-data
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyCQP4Y3y50ukWsTsOVzO4U65k8Q5Xovl6I"/> -->
