@@ -37,6 +37,14 @@ class _RegisterState extends State<Register> {
   String userName;
   String userPass;
 
+  final _text = TextEditingController();
+  bool _validate = false;
+
+  @override
+  void dispose() {
+    _text.dispose();
+    super.dispose();
+  }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -165,13 +173,19 @@ print('FirstName='+firstName);
         Row(
           children: <Widget>[
             Expanded(
+//              Text('Error Showed if Field is Empty on Submit button Pressed'),
               child: TextFormField(
 
                 onChanged: (value) {
                   firstName = value.trim();
+                  setState(() {
+                    _text.text.isEmpty ? _validate = true : _validate = false;
+                  });
                 },
+
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'First name'),
+                    errorText: _validate ? 'Value Can\'t Be Empty' : null,
+                  hintText: 'First name'),
                 /*validator: (value) {
                   if (value.isEmpty) {
                     return 'Please enter some text';
