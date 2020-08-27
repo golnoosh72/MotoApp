@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/models/debitcard.dart';
+import 'package:MotoApp/models/debitcard.dart';
 
 class CardContainer extends StatelessWidget {
   final DebitCard cardDetail;

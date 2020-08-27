@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/styles/colors.dart';
+import 'package:MotoApp/styles/colors.dart';
 
 final TextStyle basicTextStyle = TextStyle(
   fontFamily: "SFUIDisplay",

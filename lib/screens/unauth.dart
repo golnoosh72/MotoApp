@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/styles/colors.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/styles/colors.dart';
 
 class UnAuth extends StatelessWidget {
   @override

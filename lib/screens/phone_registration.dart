@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:MotoApp/widgets/custom_text_form_field.dart';
 
 class PhoneRegistration extends StatelessWidget {
   @override
@@ -34,7 +34,7 @@ class PhoneRegistration extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Tap \"Get Started\" to get an SMS confirmation to help you use UBERR. We would like to get your phone number.",
+                    "Tap \"Get Started\" to get an SMS confirmation to help you use MotoApp. We would like to get your phone number.",
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                   ),

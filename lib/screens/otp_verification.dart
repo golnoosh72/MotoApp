@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:MotoApp/widgets/custom_text_form_field.dart';
 
 class OtpVerification extends StatelessWidget {
   @override

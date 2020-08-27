@@ -1,4 +1,4 @@
-package com.example.uberr
+package com.example.MotoApp
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

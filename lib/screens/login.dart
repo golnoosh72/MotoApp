@@ -1,32 +1,18 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/styles/colors.dart';
-import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/styles/colors.dart';
+import 'package:MotoApp/widgets/custom_text_form_field.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/user.dart';
+import '../styles/styles.dart';
 
-const kTextFieldDecoration = InputDecoration(
-  hintText: 'Enter the text.',
-  hintStyle: TextStyle(color: Colors.black45),
-  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  border: OutlineInputBorder(
-//    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.black45, width: 1.0),
-//    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.black45, width: 2.0),
-//    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
-);
 
 
 /*
-Future<User> updateUser(String title) async {
+Future<user.dart> updateUser(String title) async {
   final http.Response response = await http.put(
     'https://jsonplaceholder.typicode.com/Users/1',
     headers: <String, String>{
@@ -40,14 +26,14 @@ Future<User> updateUser(String title) async {
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    return User.fromJson(json.decode(response.body));
+    return user.dart.fromJson(json.decode(response.body));
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to update User.');
+    throw Exception('Failed to update user.dart.');
   }
 }
-*/
+
 class User {
   final String userId;
   final String fullName;
@@ -65,7 +51,7 @@ class User {
   };
 
 }
-
+*/
 
 
 class MainMaterial extends StatelessWidget {
@@ -106,7 +92,7 @@ class _LoginState extends State<Login> {
 //    print(json.decode(response.body));
 if(response!=null) {
   user = User.fromJson(json.decode(response.body));
-  print(user.fullName);
+  print(user.firstName+' '+user.lastName);
 }else{
   user=null;
 }
@@ -115,7 +101,7 @@ if(response!=null) {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load User');
+      throw Exception('Failed to load user.dart');
     }
   }
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/widgets/promotions_card.dart';
+import 'package:MotoApp/widgets/promotions_card.dart';
 
 class Promotions extends StatelessWidget {
   @override

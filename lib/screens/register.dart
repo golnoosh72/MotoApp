@@ -1,47 +1,16 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/styles/colors.dart';
-import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/styles/colors.dart';
+import 'package:MotoApp/widgets/custom_text_form_field.dart';
 import 'package:http/http.dart' as http;
+import '../models/user.dart';
+import '../styles/styles.dart';
 
-// https://mehranishanian.com/userregister.php?=firstName'+firstName+'&lastName='+lastName+'&phone='+phone+'&email='+email+'&userName='+userName+'&userPass='+userPass+'
 // firstName, lastName, phone, email, userName, userPass
 
-class User {
-  final String firstName;
-  final String lastName;
-   String phone;
-   String email;
-   String userName;
-   String userPass;
 
-
-  User(this.firstName, this.lastName, this.phone, this.email, this.userName,
-      this.userPass);
-
-  User.fromJson(Map<String, dynamic> json)
-      :
-        firstName= json['firstName'],
-        lastName= json['lastName'];
-//        phone= json['phone'],
-//        email= json['email'];
-//        userName= json['userName'],
-//        userPass= json['userPass'];
-
-
-  Map<String, dynamic> toJson()=>{
-    'firstName': firstName,
-    'lastName': lastName,
-    'phone': phone,
-    'email': email,
-    'userName': userName,
-    'userPass': userPass,
-
-  };
-
-}
 
 class MainMaterial extends StatelessWidget {
   @override
@@ -68,10 +37,12 @@ class _RegisterState extends State<Register> {
   String userPass;
 
 
+  final _formKey = GlobalKey<FormState>();
 
-
-  void fetchUser() async {
-    String url='// https://mehranishanian.com/userregister.php?=firstName'+firstName+'&lastName='+lastName+'&phone='+phone+'&email='+email+'&userName='+userName+'&userPass='+userPass+'';
+  void registerUser() async {
+print('FirstName='+firstName);
+    String url='https://mehranishanian.com/userregister.php?firstName='+firstName+'&lastName='+lastName+'&phone='+phone+'&email='+email+'&userName='+userName+'&userPass='+userPass;
+    print(url);
     final response =
     await http.get(url);
 
@@ -80,9 +51,9 @@ class _RegisterState extends State<Register> {
       // then parse the JSON.
 //    print(json.decode(response.body));
       if(response!=null) {
-        user = User.fromJson(json.decode(response.body));
+     //   user = User.fromJson(json.decode(response.body));
 
-        print(user.firstName);
+      print(response.body);
 
       }else{
         user=null;
@@ -92,7 +63,7 @@ class _RegisterState extends State<Register> {
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load User');
+      throw Exception('Failed to load user.dart');
     }
   }
   @override
@@ -161,10 +132,18 @@ class _RegisterState extends State<Register> {
                 child: FlatButton(
                   color: _theme.primaryColor,
                   onPressed: () {
-//////////////////////////////////////////~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                    fetchUser();
+                    //////////////////////////////////////////~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                    /*
+                    if (_formKey.currentState.validate()) {
+////                    If the form is valid, display a Snackbar.
+        Scaffold.of(context)
+        .showSnackBar(SnackBar(content: Text('Processing Data')));
+          registerUser();
+    }
+*/
+                    registerUser();
 
-                    Navigator.of(context).pushNamed(OtpVerificationRoute);
+                  //  Navigator.of(context).pushNamed(OtpVerificationRoute);
                   },
                   child: Text(
                     "SIGN UP",
@@ -185,45 +164,81 @@ class _RegisterState extends State<Register> {
         Row(
           children: <Widget>[
             Expanded(
-              child: CustomTextFormField(
-                hintText: "First name",
+              child: TextFormField(
 
+                onChanged: (value) {
+                  firstName = value.trim();
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'First name'),
+                /*validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter some text';
+                  }
+                  return null;
+                },*/
               ),
-            ),
+              ),
+
             SizedBox(width: 15.0),
             Expanded(
-              child: CustomTextFormField(
-                hintText: "Last name",
+              child: TextField(
+                onChanged: (value) {
+                  lastName = value.trim();
+                  },
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Last name'),
               ),
-            )
+              ),
           ],
         ),
         SizedBox(
           height: 20.0,
         ),
-        CustomTextFormField(
-          hintText: "Email",
-        ),
-        SizedBox(
-          height: 20.0,
-        ),
-        Row(
-          children: <Widget>[
+        TextField(
 
-//            SizedBox(width: 15.0),
-            Expanded(
-              child: CustomTextFormField(
-                hintText: "Phone number",
+          onChanged: (value) {
+            phone = value.trim();
+          },
+          decoration: kTextFieldDecoration.copyWith(
+              hintText: 'Phone number'),
+        ),
+
+
+        SizedBox(
+          height: 20.0,
+        ),
+
+        TextField(
+                onChanged: (value) {
+                  email = value.trim();
+                },
+                decoration: kTextFieldDecoration.copyWith(
+                    hintText: 'Email'),
               ),
-            )
-          ],
+        SizedBox(
+          height: 20.0,
+        ),
+        TextField(
+
+          onChanged: (value) {
+            userName = value.trim();
+          },
+          decoration: kTextFieldDecoration.copyWith(
+              hintText: 'User Name'),
         ),
         SizedBox(
           height: 20.0,
         ),
-        CustomTextFormField(
-          hintText: "Password",
+        TextField(
+
+          onChanged: (value) {
+            userPass = value.trim();
+          },
+          decoration: kTextFieldDecoration.copyWith(
+              hintText: 'Password'),
         ),
+
         SizedBox(
           height: 25.0,
         ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/models/destination.dart';
-import 'package:uberr/models/place.dart';
-import 'package:uberr/styles/colors.dart';
-import 'package:uberr/widgets/location_card.dart';
+import 'package:MotoApp/models/destination.dart';
+import 'package:MotoApp/models/place.dart';
+import 'package:MotoApp/styles/colors.dart';
+import 'package:MotoApp/widgets/location_card.dart';
 
 class DestinationView extends StatefulWidget {
   @override

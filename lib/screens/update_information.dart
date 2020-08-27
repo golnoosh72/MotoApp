@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/styles/colors.dart';
-import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:MotoApp/styles/colors.dart';
+import 'package:MotoApp/widgets/custom_text_form_field.dart';
 
 class UpdateInformation extends StatelessWidget {
   @override

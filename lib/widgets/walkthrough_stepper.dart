@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uberr/providers/walkthrough_provider.dart';
+import 'package:MotoApp/providers/walkthrough_provider.dart';
 
 class WalkthroughStepper extends StatelessWidget {
   final PageController controller;

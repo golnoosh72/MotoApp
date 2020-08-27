@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/models/debitcard.dart';
-import 'package:uberr/widgets/app_drawer.dart';
-import 'package:uberr/widgets/card_container.dart';
+import 'package:MotoApp/models/debitcard.dart';
+import 'package:MotoApp/widgets/app_drawer.dart';
+import 'package:MotoApp/widgets/card_container.dart';
 
 class Payment extends StatelessWidget {
   @override

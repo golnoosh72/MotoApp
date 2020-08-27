@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/widgets/vehicle_selection.dart';
+import 'package:MotoApp/widgets/vehicle_selection.dart';
 
 class SuggestedRides extends StatelessWidget {
   @override

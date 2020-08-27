@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/widgets/ride_card.dart';
-import 'package:uberr/widgets/ride_cards.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/widgets/ride_card.dart';
+import 'package:MotoApp/widgets/ride_cards.dart';
 
 class MyRides extends StatelessWidget {
   @override

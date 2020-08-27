@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:uberr/models/place.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/widgets/location_card.dart';
+import 'package:MotoApp/models/place.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/widgets/location_card.dart';
 
 class Favorites extends StatelessWidget {
   final List<Place> _places = [

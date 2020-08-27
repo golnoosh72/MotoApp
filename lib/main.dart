@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uberr/providers/walkthrough_provider.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/styles/theme_data.dart';
+import 'package:MotoApp/providers/walkthrough_provider.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/styles/theme_data.dart';
 
 void main() {
   runApp(

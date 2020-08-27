@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:uberr/widgets/custom_text_form_field.dart';
+import 'package:MotoApp/widgets/custom_text_form_field.dart';
 
 class AddCard extends StatelessWidget {
   @override

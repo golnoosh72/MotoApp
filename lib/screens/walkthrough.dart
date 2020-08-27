@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:uberr/providers/walkthrough_provider.dart';
-import 'package:uberr/router.dart';
-import 'package:uberr/widgets/walkthrough_stepper.dart';
-import 'package:uberr/widgets/walkthrough_template.dart';
+import 'package:MotoApp/providers/walkthrough_provider.dart';
+import 'package:MotoApp/router.dart';
+import 'package:MotoApp/widgets/walkthrough_stepper.dart';
+import 'package:MotoApp/widgets/walkthrough_template.dart';
 
 class WalkThrough extends StatelessWidget {
   final PageController _pageViewController = PageController(initialPage: 0);

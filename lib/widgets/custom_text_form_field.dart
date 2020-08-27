@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/services/text_formatter.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String hintText;
@@ -11,7 +12,7 @@ class CustomTextFormField extends StatelessWidget {
       this.verticalPadding,
       this.value,
       this.suffixIcon,
-      this.showLabel = true});
+      this.showLabel = true, List<WhitelistingTextInputFormatter> inputFormatters});
 
   @override
   Widget build(BuildContext context) {
