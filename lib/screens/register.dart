@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:uberr/router.dart';
 import 'package:uberr/styles/colors.dart';
@@ -187,6 +187,7 @@ class _RegisterState extends State<Register> {
             Expanded(
               child: CustomTextFormField(
                 hintText: "First name",
+
               ),
             ),
             SizedBox(width: 15.0),
@@ -208,13 +209,8 @@ class _RegisterState extends State<Register> {
         ),
         Row(
           children: <Widget>[
-            Container(
-              width: 80.0,
-              child: CustomTextFormField(
-                hintText: "+234",
-              ),
-            ),
-            SizedBox(width: 15.0),
+
+//            SizedBox(width: 15.0),
             Expanded(
               child: CustomTextFormField(
                 hintText: "Phone number",
