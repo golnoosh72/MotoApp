@@ -35,6 +35,16 @@ class _RegisterState extends State<Register> {
   String email;
   String userName;
   String userPass;
+
+  final _text = TextEditingController();
+  bool _validate = false;
+
+  @override
+  void dispose() {
+    _text.dispose();
+    super.dispose();
+  }
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   void registerUser() async {
     print('FirstName=' + firstName);
