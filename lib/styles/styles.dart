@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter the text.',
@@ -6,7 +7,7 @@ const kTextFieldDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
 //    borderRadius: BorderRadius.all(Radius.circular(32.0)),
-  ),
+      ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Colors.black45, width: 1.0),
 //    borderRadius: BorderRadius.all(Radius.circular(32.0)),
@@ -16,3 +17,6 @@ const kTextFieldDecoration = InputDecoration(
 //    borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
+
+final requiredValidator =
+    RequiredValidator(errorText: 'this field is required');
