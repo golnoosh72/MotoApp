@@ -40,8 +40,8 @@ class _HomepageState extends State<Homepage> {
   }
 
   Future<void> getMyLocation() async {
-    Position position = await Geolocator()
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    Position position =
+        await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     myLocation = LatLng(position.latitude, position.longitude);
     this.setState(() {
       _markers.add(

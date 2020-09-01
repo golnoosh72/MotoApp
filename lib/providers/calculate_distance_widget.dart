@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class CalculateDistanceWidget extends StatefulWidget {
   @override
@@ -8,21 +9,21 @@ class CalculateDistanceWidget extends StatefulWidget {
 
 class _CalculateDistanceState extends State<CalculateDistanceWidget> {
   final TextEditingController _startCoordinatesTextController =
-  TextEditingController();
+      TextEditingController();
   final TextEditingController _endCoordinatesTextController =
-  TextEditingController();
+      TextEditingController();
 
   Future<void> _onCalculatePressed() async {
     final List<String> startCoords =
-    _startCoordinatesTextController.text.split(',');
+        _startCoordinatesTextController.text.split(',');
     final List<String> endCoords =
-    _endCoordinatesTextController.text.split(',');
+        _endCoordinatesTextController.text.split(',');
     final double startLatitude = double.parse(startCoords[0]);
     final double startLongitude = double.parse(startCoords[1]);
     final double endLatitude = double.parse(endCoords[0]);
     final double endLongitude = double.parse(endCoords[1]);
 
-    final double distance = await Geolocator().distanceBetween(
+    final double distance = await distanceBetween(
         startLatitude, startLongitude, endLatitude, endLongitude);
 
     Scaffold.of(context).showSnackBar(SnackBar(
@@ -48,7 +49,7 @@ class _CalculateDistanceState extends State<CalculateDistanceWidget> {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             decoration:
-            const InputDecoration(hintText: 'end latitude,end longitude'),
+                const InputDecoration(hintText: 'end latitude,end longitude'),
             controller: _endCoordinatesTextController,
           ),
         ),

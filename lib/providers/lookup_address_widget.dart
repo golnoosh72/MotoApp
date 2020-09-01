@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class LookupAddressWidget extends StatefulWidget {
   @override
@@ -13,9 +14,9 @@ class _LookupAddressState extends State<LookupAddressWidget> {
   List<String> _placemarkCoords = [];
 
   Future<void> _onLookupCoordinatesPressed(BuildContext context) async {
-    final List<Placemark> placemarks = await Future(
-            () => _geolocator.placemarkFromAddress(_addressTextController.text))
-        .catchError((onError) {
+    final List<Placemark> placemarks =
+        await Future(() => placemarkFromAddress(_addressTextController.text))
+            .catchError((onError) {
       Scaffold.of(context).showSnackBar(SnackBar(
         content: Text(onError.toString()),
       ));
@@ -26,9 +27,9 @@ class _LookupAddressState extends State<LookupAddressWidget> {
       final Placemark pos = placemarks[0];
       final List<String> coords = placemarks
           .map((placemark) =>
-      pos.position?.latitude.toString() +
-          ', ' +
-          pos.position?.longitude.toString())
+              pos.position?.latitude.toString() +
+              ', ' +
+              pos.position?.longitude.toString())
           .toList();
       setState(() {
         _placemarkCoords = coords;
@@ -44,7 +45,7 @@ class _LookupAddressState extends State<LookupAddressWidget> {
         children: <Widget>[
           TextField(
             decoration:
-            const InputDecoration(hintText: 'Please enter an address'),
+                const InputDecoration(hintText: 'Please enter an address'),
             controller: _addressTextController,
           ),
           RaisedButton(

@@ -19,7 +19,7 @@ import 'package:MotoApp/screens/unauth.dart';
 import 'package:MotoApp/screens/update_favorite.dart';
 import 'package:MotoApp/screens/update_information.dart';
 import 'package:MotoApp/screens/walkthrough.dart';
-
+import 'package:MotoApp/screens/map.dart';
 
 // Routes
 // const String HomePageRoute = "/";
@@ -42,8 +42,7 @@ const String UpdateFavoritesRoute = "update-favorite";
 const String PromotionRoute = "promotion";
 const String SuggestedRidesRoute = "suggested-route";
 const String MyRidesRoute = "my-rides";
-
-
+const String Map = "map";
 
 // Router
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -68,7 +67,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (BuildContext context) => SelectCountry());
     case HomepageRoute:
-      return MaterialPageRoute(builder: (BuildContext context) => Homepage());
+      return MaterialPageRoute(
+          builder: (BuildContext context) => MapView()); //Homepage());
     case DestinationRoute:
       return MaterialPageRoute(
           builder: (BuildContext context) => DestinationView());
@@ -95,8 +95,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case MyRidesRoute:
       return MaterialPageRoute(builder: (BuildContext context) => MyRides());
 
-
-      default:
+    default:
       return MaterialPageRoute(
           builder: (BuildContext context) => WalkThrough());
   }

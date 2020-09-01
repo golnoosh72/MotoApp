@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:geocoding/geocoding.dart';
 import '../widgets/placeholder_widget.dart';
 
 class CurrentLocationWidget extends StatefulWidget {
@@ -49,10 +49,10 @@ class _LocationState extends State<CurrentLocationWidget> {
     Position position;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      final Geolocator geolocator = Geolocator()
-        ..forceAndroidLocationManager = !widget.androidFusedLocation;
-      position = await geolocator.getLastKnownPosition(
-          desiredAccuracy: LocationAccuracy.best);
+      // final Geolocator geolocator = Geolocator()
+      //   ..forceAndroidLocationManager = !widget.androidFusedLocation;
+      position =
+          await getLastKnownPosition(desiredAccuracy: LocationAccuracy.best);
     } on PlatformException {
       position = null;
     }
@@ -71,23 +71,23 @@ class _LocationState extends State<CurrentLocationWidget> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   _initCurrentLocation() {
-    Geolocator()
-      ..forceAndroidLocationManager = !widget.androidFusedLocation
-      ..getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.medium,
-      ).then((position) {
-        if (mounted) {
-          setState(() => _currentPosition = position);
-        }
-      }).catchError((e) {
-        //
-      });
+    // Geolocator()
+    //   ..forceAndroidLocationManager = !widget.androidFusedLocation
+    getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.medium,
+    ).then((position) {
+      if (mounted) {
+        setState(() => _currentPosition = position);
+      }
+    }).catchError((e) {
+      //
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<GeolocationStatus>(
-        future: Geolocator().checkGeolocationPermissionStatus(),
+        future: checkGeolocationPermissionStatus(),
         builder:
             (BuildContext context, AsyncSnapshot<GeolocationStatus> snapshot) {
           if (!snapshot.hasData) {

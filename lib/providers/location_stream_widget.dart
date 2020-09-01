@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:geocoding/geocoding.dart';
 import '../widgets/placeholder_widget.dart';
 
 class LocationStreamWidget extends StatefulWidget {
@@ -17,11 +17,11 @@ class LocationStreamState extends State<LocationStreamWidget> {
   void _toggleListening() {
     if (_positionStreamSubscription == null) {
       const LocationOptions locationOptions =
-      LocationOptions(accuracy: LocationAccuracy.best);
+          LocationOptions(accuracy: LocationAccuracy.best);
       final Stream<Position> positionStream =
-      Geolocator().getPositionStream(locationOptions);
+          Geolocator().getPositionStream(locationOptions);
       _positionStreamSubscription = positionStream.listen(
-              (Position position) => setState(() => _positions.add(position)));
+          (Position position) => setState(() => _positions.add(position)));
       _positionStreamSubscription.pause();
     }
 
